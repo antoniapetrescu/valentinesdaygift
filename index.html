@@ -1,104 +1,159 @@
 <!doctype html>
-<html lang="en">
+<html lang="ro">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>💘 For Alex</title>
+<title>Pentru Alex</title>
 <style>
   :root{
-    --bg1:#ffe0ec;
-    --bg2:#ffd1e1;
-    --card:#ffffffcc;
-    --txt:#3a0b1e;
-    --accent:#ff2d6d;
-    --accent2:#ff5aa0;
-    --shadow: 0 18px 60px rgba(0,0,0,.12);
+    --bg: #fff2f6;
+    --ink:#2a0c16;
+    --pink:#ff4d7d;
+    --pink2:#ff7aa2;
+    --line: rgba(42,12,22,.18);
+    --paper: rgba(255,255,255,.86);
+    --shadow: 0 12px 35px rgba(0,0,0,.12);
   }
+
   *{box-sizing:border-box}
   body{
     margin:0;
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-    color:var(--txt);
+    font-family: "Trebuchet MS", Verdana, Arial, system-ui, sans-serif;
+    color:var(--ink);
     min-height:100vh;
-    display:grid;
-    place-items:center;
     background:
-      radial-gradient(1200px 700px at 20% 10%, var(--bg2), transparent 60%),
-      radial-gradient(900px 600px at 90% 30%, #ffc0d6, transparent 55%),
-      linear-gradient(180deg, var(--bg1), #fff);
-    overflow-x:hidden;
+      radial-gradient(900px 600px at 15% 10%, #ffd3e1, transparent 60%),
+      radial-gradient(800px 520px at 90% 25%, #ffc2d6, transparent 55%),
+      linear-gradient(180deg, var(--bg), #ffffff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
   }
 
-  /* Floating hearts */
-  .heart-field{position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0;}
-  .heart{
-    position:absolute;
-    width:18px;height:18px;
+  /* light hearts, not too "template-y" */
+  .hearts{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
     opacity:.55;
+  }
+  .h{
+    position:absolute;
+    width:14px;height:14px;
+    background: var(--pink);
     transform: rotate(45deg);
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    border-radius:4px;
-    animation: floatUp linear forwards;
-    filter: drop-shadow(0 10px 18px rgba(255,45,109,.22));
+    border-radius:3px;
+    animation: up linear forwards;
+    filter: drop-shadow(0 8px 12px rgba(255,77,125,.16));
   }
-  .heart::before,.heart::after{
+  .h:before,.h:after{
     content:"";
-    position:absolute; width:18px; height:18px;
-    background:inherit; border-radius:50%;
+    position:absolute;
+    width:14px;height:14px;
+    background:inherit;
+    border-radius:50%;
   }
-  .heart::before{left:-9px; top:0}
-  .heart::after{left:0; top:-9px}
-  @keyframes floatUp{
-    from{ transform: translateY(25vh) rotate(45deg) scale(.9); }
-    to{ transform: translateY(-140vh) rotate(45deg) scale(1.2); }
-  }
-
-  .wrap{
-    width:min(760px, 94vw);
-    z-index:1;
-    padding:22px;
+  .h:before{left:-7px; top:0}
+  .h:after{left:0; top:-7px}
+  @keyframes up{
+    from{ transform: translateY(20vh) rotate(45deg) scale(.95); }
+    to{ transform: translateY(-140vh) rotate(45deg) scale(1.15); }
   }
 
-  .card{
-    background:var(--card);
-    backdrop-filter: blur(10px);
-    border:1px solid rgba(255,45,109,.18);
-    border-radius:22px;
+  .page{
+    width:min(760px, 96vw);
+    background: var(--paper);
+    border:1px solid var(--line);
+    border-radius:18px;
     box-shadow: var(--shadow);
     padding:18px;
   }
 
-  h1{margin:0 0 8px; font-size: clamp(22px, 3.2vw, 34px); letter-spacing:-.02em;}
-  h2{margin:0 0 8px; font-size:18px}
-  p{margin:0 0 10px; line-height:1.5}
-  .muted{opacity:.78; font-size:13px}
-
-  .screen{display:none}
-  .screen.active{display:block}
-
-  .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-  .spacer{height:10px}
-  .divider{height:1px; background:rgba(58,11,30,.12); margin:14px 0}
-
-  button{
-    border:0;
-    padding:10px 14px;
-    border-radius:999px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color:#fff;
-    font-weight:650;
-    cursor:pointer;
-    box-shadow: 0 12px 30px rgba(255,45,109,.20);
-    transition: transform .12s ease, filter .12s ease;
+  /* “handmade note” header */
+  .top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    border-bottom: 1px dashed rgba(42,12,22,.25);
+    padding-bottom:12px;
+    margin-bottom:14px;
+  }
+  .title{
+    margin:0;
+    font-size:28px;
+    letter-spacing:.2px;
+  }
+  .note{
+    margin:6px 0 0;
+    font-size:13px;
+    opacity:.78;
+    line-height:1.35;
+  }
+  .stamp{
+    font-size:24px;
+    transform: rotate(-6deg);
     user-select:none;
   }
-  button:hover{ transform: translateY(-1px); filter: brightness(1.03); }
-  button:active{ transform: translateY(1px) scale(.99); }
-  button.ghost{
+
+  .screen{ display:none; }
+  .screen.active{ display:block; }
+
+  .box{
+    background: rgba(255,255,255,.75);
+    border:1px solid rgba(42,12,22,.12);
+    border-radius:16px;
+    padding:14px;
+  }
+
+  h2{
+    margin:0 0 8px;
+    font-size:18px;
+  }
+  p{
+    margin:0 0 10px;
+    line-height:1.5;
+  }
+
+  .row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    margin-top:10px;
+  }
+
+  button{
+    border:1px solid rgba(42,12,22,.18);
+    background: #fff;
+    color: var(--ink);
+    padding:10px 12px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:700;
+    box-shadow: 0 6px 14px rgba(0,0,0,.08);
+    transition: transform .10s ease, background .10s ease;
+  }
+  button:hover{ transform: translateY(-1px); background:#fff7fa; }
+  button:active{ transform: translateY(1px); }
+  button.primary{
+    border-color: rgba(255,77,125,.45);
+    background: linear-gradient(135deg, var(--pink), var(--pink2));
+    color:#fff;
+  }
+  button.linky{
     background: transparent;
-    color: var(--accent);
-    border:1px solid rgba(255,45,109,.35);
+    border-style:dashed;
     box-shadow:none;
+    opacity:.9;
+  }
+
+  .divider{
+    height:1px;
+    background: rgba(42,12,22,.12);
+    margin:14px 0;
   }
 
   .toast{
@@ -107,7 +162,7 @@
     bottom:18px;
     transform:translateX(-50%);
     background:#fff;
-    border:1px solid rgba(255,45,109,.2);
+    border:1px solid rgba(42,12,22,.18);
     border-radius:999px;
     padding:10px 14px;
     box-shadow:0 14px 40px rgba(0,0,0,.14);
@@ -119,488 +174,361 @@
     text-overflow:ellipsis;
   }
 
-  .box{
-    border-radius:18px;
-    padding:14px;
-    background: linear-gradient(180deg, #fff, #fff6fa);
-    border:1px solid rgba(255,45,109,.15);
-  }
-
-  .bigEmoji{font-size:34px; margin: 6px 0 8px}
-
   .meter{
     height:12px;
     border-radius:999px;
-    background: rgba(58,11,30,.10);
+    background: rgba(42,12,22,.10);
     overflow:hidden;
-    border:1px solid rgba(255,45,109,.18);
+    border:1px solid rgba(255,77,125,.20);
   }
   .meter > div{
     height:100%;
     width:0%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    background: linear-gradient(90deg, var(--pink), var(--pink2));
     transition: width .25s ease;
   }
+  .hint{ font-size:12.5px; opacity:.78; }
 
   .ytWrap{
     position:relative; padding-bottom:56.25%; height:0; overflow:hidden;
-    border-radius:16px;
-    border:1px solid rgba(255,45,109,.18);
-    box-shadow: 0 12px 30px rgba(0,0,0,.12);
+    border-radius:14px;
+    border:1px solid rgba(42,12,22,.14);
     background:#fff;
   }
   .ytWrap iframe{
     position:absolute; inset:0; width:100%; height:100%;
     border:0;
-    border-radius:16px;
   }
 
   .photo{
     width:100%;
-    border-radius:18px;
-    border:1px solid rgba(255,45,109,.18);
-    box-shadow: 0 14px 40px rgba(0,0,0,.12);
+    border-radius:14px;
+    border:1px solid rgba(42,12,22,.14);
+    box-shadow: 0 12px 30px rgba(0,0,0,.10);
     display:block;
+  }
+  .photoFallback{
+    display:none;
+    padding:10px 12px;
+    border-radius:12px;
+    border:1px dashed rgba(42,12,22,.25);
+    background: rgba(255,255,255,.7);
+    font-size:13px;
+    opacity:.9;
   }
 </style>
 </head>
 
 <body>
-  <div class="heart-field" id="heartField" aria-hidden="true"></div>
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
 
-  <div class="wrap">
-    <section class="card">
-      <h1>💘 Hi Alex</h1>
-      <p class="muted">I made you a tiny button game. Press stuff.</p>
-
-      <!-- SCREEN: welcome -->
-      <div class="screen active" id="sWelcome">
-        <div class="box">
-          <div class="bigEmoji">🥰</div>
-          <h2>Start here</h2>
-          <p>Okay. First question.</p>
-          <div class="row">
-            <button type="button" data-go="sGame1">Go</button>
-            <button class="ghost" type="button" id="heartShowerBtn">Throw hearts</button>
-          </div>
-        </div>
+  <main class="page">
+    <header class="top">
+      <div>
+        <h1 class="title">Pentru Alex</h1>
+        <p class="note">Am facut asta pentru tine. Apasa pe butoane. Nu te grabi.</p>
       </div>
+      <div class="stamp">💌</div>
+    </header>
 
-      <!-- SCREEN: game 1 -->
-      <div class="screen" id="sGame1">
-        <div class="box">
-          <div class="bigEmoji">😏</div>
-          <h2 id="g1Title">Question 1</h2>
-          <p id="g1Text"></p>
-          <div class="spacer"></div>
-          <div class="row" id="g1Buttons"></div>
-        </div>
-
-        <div class="divider"></div>
+    <!-- ECRAN: start -->
+    <section class="screen active" id="sStart">
+      <div class="box">
+        <h2>Incepem?</h2>
+        <p>Te avertizez: daca alegi raspunsul gresit, te tachinez putin.</p>
         <div class="row">
-          <button class="ghost" type="button" data-go="sWelcome">Back</button>
-          <button class="ghost" type="button" id="resetBtn">Reset</button>
+          <button class="primary" type="button" data-go="sQ1">Hai</button>
+          <button type="button" id="heartBtn">Arunca inimi</button>
         </div>
       </div>
-
-      <!-- SCREEN: game 2 -->
-      <div class="screen" id="sGame2">
-        <div class="box">
-          <div class="bigEmoji">🤭</div>
-          <h2>My turn</h2>
-          <p id="g2Text"></p>
-
-          <div class="spacer"></div>
-          <div class="row">
-            <button type="button" id="g2Yes">Yes</button>
-            <button type="button" id="g2No">No</button>
-            <button class="ghost" type="button" id="g2Prove">Prove it</button>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-        <div class="row">
-          <button class="ghost" type="button" data-go="sGame1">Back</button>
-        </div>
-      </div>
-
-      <!-- SCREEN: kiss meter -->
-      <div class="screen" id="sMeter">
-        <div class="box">
-          <div class="bigEmoji">💋</div>
-          <h2>Kiss meter</h2>
-          <p>Press the button 10 times.</p>
-
-          <div class="spacer"></div>
-          <div class="meter"><div id="meterBar"></div></div>
-          <div class="spacer"></div>
-
-          <div class="row">
-            <button type="button" id="kissBtn">Kiss</button>
-            <button class="ghost" type="button" id="meterCheatBtn">I’m lazy</button>
-          </div>
-
-          <p class="muted" id="meterHint"></p>
-        </div>
-
-        <div class="divider"></div>
-        <div class="row">
-          <button class="ghost" type="button" data-go="sGame2">Back</button>
-        </div>
-      </div>
-
-      <!-- SCREEN: music -->
-      <div class="screen" id="sMusic">
-        <div class="box">
-          <div class="bigEmoji">🎵</div>
-          <h2>Play this now</h2>
-          <p>It’s cute and funny. That’s the vibe.</p>
-
-          <div class="spacer"></div>
-
-          <div class="ytWrap">
-            <iframe
-              src="https://www.youtube.com/embed/UZWmtxLiiFE?si=fnF18UXyx6HzpzKk"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen>
-            </iframe>
-          </div>
-
-          <div class="spacer"></div>
-          <div class="row">
-            <button class="ghost" type="button" id="openYT">Open in YouTube</button>
-            <button type="button" data-go="sFinal">Continue</button>
-          </div>
-
-          <p class="muted">If it doesn’t play, press play (browsers…).</p>
-        </div>
-
-        <div class="divider"></div>
-        <div class="row">
-          <button class="ghost" type="button" data-go="sMeter">Back</button>
-        </div>
-      </div>
-
-      <!-- SCREEN: final (with photo) -->
-      <div class="screen" id="sFinal">
-        <div class="box">
-          <div class="bigEmoji">🫶</div>
-          <h2>Okay Alex.</h2>
-          <p id="finalMsg"></p>
-
-          <div class="spacer"></div>
-
-          <!-- Upload your image to the repo root and name it exactly: us.jpg -->
-          <img src="us.jpg" alt="Us" class="photo" onerror="this.style.display='none';" />
-
-          <div class="spacer"></div>
-          <div class="row" id="finalButtons"></div>
-
-          <div class="spacer"></div>
-          <p class="muted">PS: yes, I made you do a button game on purpose.</p>
-        </div>
-
-        <div class="divider"></div>
-        <div class="row">
-          <button class="ghost" type="button" data-go="sWelcome">Start over</button>
-        </div>
-      </div>
-
     </section>
-  </div>
+
+    <!-- ECRAN: Q1 -->
+    <section class="screen" id="sQ1">
+      <div class="box">
+        <h2 id="q1Title">Intrebarea 1</h2>
+        <p id="q1Text"></p>
+        <div class="row" id="q1Btns"></div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="row">
+        <button class="linky" type="button" data-go="sStart">Inapoi</button>
+        <button class="linky" type="button" id="resetBtn">Reset</button>
+      </div>
+    </section>
+
+    <!-- ECRAN: Q2 -->
+    <section class="screen" id="sQ2">
+      <div class="box">
+        <h2>Randul meu</h2>
+        <p id="q2Text"></p>
+        <div class="row">
+          <button class="primary" type="button" id="q2Yes">Da</button>
+          <button type="button" id="q2No">Nu</button>
+          <button class="linky" type="button" id="q2Prove">Dovedeste</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="row">
+        <button class="linky" type="button" data-go="sQ1">Inapoi</button>
+      </div>
+    </section>
+
+    <!-- ECRAN: meter -->
+    <section class="screen" id="sMeter">
+      <div class="box">
+        <h2>Contor de pupici</h2>
+        <p>Apasa pe buton de 10 ori.</p>
+
+        <div class="meter" aria-label="contor"><div id="bar"></div></div>
+
+        <div class="row">
+          <button class="primary" type="button" id="kissBtn">Pup</button>
+          <button type="button" id="lazyBtn">Sunt obosit</button>
+        </div>
+
+        <p class="hint" id="meterHint"></p>
+      </div>
+
+      <div class="divider"></div>
+      <div class="row">
+        <button class="linky" type="button" data-go="sQ2">Inapoi</button>
+      </div>
+    </section>
+
+    <!-- ECRAN: music -->
+    <section class="screen" id="sMusic">
+      <div class="box">
+        <h2>Pune asta in fundal</h2>
+        <p class="hint">Daca nu porneste, apasa play (browser-ele sunt enervante).</p>
+
+        <div class="ytWrap">
+          <iframe
+            src="https://www.youtube.com/embed/UZWmtxLiiFE?si=fnF18UXyx6HzpzKk"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="row">
+          <button class="linky" type="button" id="openYT">Deschide in YouTube</button>
+          <button class="primary" type="button" data-go="sFinal">Continua</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="row">
+        <button class="linky" type="button" data-go="sMeter">Inapoi</button>
+      </div>
+    </section>
+
+    <!-- ECRAN: final -->
+    <section class="screen" id="sFinal">
+      <div class="box">
+        <h2>Alex.</h2>
+        <p id="finalMsg"></p>
+
+        <img src="us.jpeg" alt="Noi doi" class="photo" id="usPhoto" />
+        <div class="photoFallback" id="photoFallback">
+          Nu vad poza. Verifica sa fie in repo (langa index.html) si sa se numeasca exact <b>us.jpeg</b>.
+        </div>
+
+        <div class="row" id="finalBtns"></div>
+
+        <p class="hint">PS: da, am facut asta ca sa apesi pe butoane.</p>
+      </div>
+
+      <div class="divider"></div>
+      <div class="row">
+        <button class="linky" type="button" data-go="sStart">Ia-o de la capat</button>
+      </div>
+    </section>
+  </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 'use strict';
 
-const state = {
-  g1Step: 0,
-  kisses: 0,
-  finalSpanish: "Te quiero mucho"
-};
-
-const $ = (id) => document.getElementById(id);
+const state = { step: 0, kisses: 0 };
+const $ = (id)=>document.getElementById(id);
 const screens = Array.from(document.querySelectorAll(".screen"));
 
-let toastTimer = null;
+function go(id){
+  screens.forEach(s=>s.classList.remove("active"));
+  $(id).classList.add("active");
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+document.addEventListener("click",(e)=>{
+  const b = e.target.closest("[data-go]");
+  if(!b) return;
+  go(b.getAttribute("data-go"));
+});
+
+let toastTimer=null;
 function toast(msg){
-  const t = $("toast");
-  t.textContent = msg;
-  t.style.display = "block";
+  const t=$("toast");
+  t.textContent=msg;
+  t.style.display="block";
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=> t.style.display="none", 2400);
+  toastTimer=setTimeout(()=>t.style.display="none",2200);
 }
 
-function go(screenId){
-  screens.forEach(s => s.classList.remove("active"));
-  $(screenId).classList.add("active");
-  window.scrollTo({top: 0, behavior: "smooth"});
+/* gentle floating hearts */
+function spawnHeart(x=Math.random()*window.innerWidth){
+  const h=document.createElement("div");
+  h.className="h";
+  const size=10+Math.random()*16;
+  h.style.width=size+"px";
+  h.style.height=size+"px";
+  h.style.left=Math.max(0,Math.min(window.innerWidth-size,x))+"px";
+  h.style.bottom=(-30-Math.random()*80)+"px";
+  const dur=6+Math.random()*7;
+  h.style.animationDuration=dur+"s";
+  h.style.opacity=(0.20+Math.random()*0.55).toFixed(2);
+  $("hearts").appendChild(h);
+  setTimeout(()=>h.remove(), (dur+0.2)*1000);
+}
+setInterval(()=>spawnHeart(), 850);
+
+function burst(n=30){
+  const x=window.innerWidth*(0.2+Math.random()*0.6);
+  for(let i=0;i<n;i++) setTimeout(()=>spawnHeart(x+(Math.random()-0.5)*160), i*22);
 }
 
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-go]");
-  if(!btn) return;
-  go(btn.getAttribute("data-go"));
+$("heartBtn").addEventListener("click", ()=>{
+  burst(50);
+  toast("ok, destule inimi");
 });
 
-/* hearts */
-function spawnFloatingHeart(x = Math.random() * window.innerWidth){
-  const h = document.createElement("div");
-  h.className = "heart";
-  const size = 12 + Math.random()*18;
-  h.style.width = size + "px";
-  h.style.height = size + "px";
-  h.style.left = Math.max(0, Math.min(window.innerWidth - size, x)) + "px";
-  h.style.bottom = (-30 - Math.random()*90) + "px";
-  const dur = 6 + Math.random()*7;
-  h.style.animationDuration = dur + "s";
-  h.style.opacity = (0.22 + Math.random()*0.55).toFixed(2);
-  $("heartField").appendChild(h);
-  setTimeout(()=> h.remove(), (dur+0.2)*1000);
-}
-setInterval(()=> spawnFloatingHeart(), 700);
-
-function burstHearts(n=20){
-  const x = window.innerWidth*(0.2 + Math.random()*0.6);
-  for(let i=0;i<n;i++){
-    setTimeout(()=> spawnFloatingHeart(x + (Math.random()-0.5)*160), i*25);
+/* Q1: do you love me */
+const q1 = [
+  {
+    text: "Intrebare scurta: ma iubesti?",
+    buttons: [
+      { label:"Da", next:1, fx:()=>{ toast("bine 😌"); burst(16);} },
+      { label:"Nu", next:"trap", fx:()=>{ toast("gresit 😤"); burst(8);} },
+      { label:"Poate", next:"maybe", fx:()=>{ toast("poate??"); } }
+    ]
+  },
+  {
+    text: "Cat de mult?",
+    buttons: [
+      { label:"Mult", next:2, fx:()=>{ toast("stiam eu"); burst(14);} },
+      { label:"La infinit", next:2, fx:()=>{ toast("ok, m-ai atins"); burst(22);} },
+      { label:"Cam 3", next:"three", fx:()=>{ toast("3?? 😭"); } }
+    ]
+  },
+  {
+    text: "Ultima: apasa butonul corect.",
+    buttons: [
+      { label:"Butonul corect", next:"win", fx:()=>{ toast("exact"); burst(26);} },
+      { label:"Asta", next:"nope", fx:()=>{ toast("nu"); } },
+      { label:"Sau asta", next:"nope", fx:()=>{ toast("tot nu"); } }
+    ]
   }
-}
+];
 
-$("heartShowerBtn").addEventListener("click", () => {
-  burstHearts(45);
-  toast("okay okay hearts everywhere");
-});
+function renderQ1(){
+  const step=q1[state.step];
+  $("q1Title").textContent = "Intrebarea " + (state.step+1);
+  $("q1Text").textContent = step.text;
 
-/* Game 1: “do you love me” */
-const g1 = {
-  steps: [
-    {
-      text: "Quick question. Do you love me?",
-      buttons: [
-        { label: "Yes", next: 1, onPick: ()=>{ toast("good answer 😌"); burstHearts(18);} },
-        { label: "No", next: "trap", onPick: ()=>{ toast("WRONG 😤"); burstHearts(8);} },
-        { label: "Maybe", next: "maybe", onPick: ()=>{ toast("maybe?? excuse me??"); } }
-      ]
-    },
-    {
-      text: "Okay. How much?",
-      buttons: [
-        { label: "A lot", next: 2, onPick: ()=>{ toast("i knew it"); burstHearts(14);} },
-        { label: "Infinity", next: 2, onPick: ()=>{ toast("stop i’m gonna cry"); burstHearts(22);} },
-        { label: "Like… 3", next: "three", onPick: ()=>{ toast("3?? 😭"); } }
-      ]
-    },
-    {
-      text: "Last one. Press the correct button.",
-      buttons: [
-        { label: "The correct button", next: "win", onPick: ()=>{ toast("you understood the assignment"); burstHearts(26);} },
-        { label: "This one", next: "nope", onPick: ()=>{ toast("nope 😌 try again"); } },
-        { label: "Also this one", next: "nope", onPick: ()=>{ toast("still nope"); } }
-      ]
-    }
-  ]
-};
+  const wrap=$("q1Btns");
+  wrap.textContent="";
 
-function renderG1(){
-  const step = g1.steps[state.g1Step];
-  $("g1Title").textContent = `Question ${state.g1Step + 1}`;
-  $("g1Text").textContent = step.text;
+  step.buttons.forEach(b=>{
+    const btn=document.createElement("button");
+    btn.textContent=b.label;
+    btn.className = b.label==="Da" || b.label==="Butonul corect" ? "primary" : "";
+    btn.onclick=()=>{
+      b.fx?.();
 
-  const wrap = $("g1Buttons");
-  wrap.textContent = "";
-
-  step.buttons.forEach(b => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.textContent = b.label;
-
-    btn.addEventListener("click", () => {
-      b.onPick?.();
-
-      if (b.next === "trap") {
-        wrap.innerHTML = "";
-        $("g1Text").textContent = "Okay no. Try again. (i’m watching you)";
-        toast("choose wisely 👀");
-        ["Yes","Yes (louder)","YES"].forEach(label=>{
-          const x = document.createElement("button");
-          x.textContent = label;
-          x.onclick = ()=>{
-            burstHearts(18);
-            toast("much better");
-            state.g1Step = 1;
-            renderG1();
+      if(b.next==="trap"){
+        wrap.innerHTML="";
+        $("q1Text").textContent="Ok, nu. Incearca din nou. (te vad 👀)";
+        ["Da","DA","Da (tare)"].forEach(label=>{
+          const x=document.createElement("button");
+          x.textContent=label;
+          x.className="primary";
+          x.onclick=()=>{
+            toast("asa"); burst(18);
+            state.step=1; renderQ1();
           };
           wrap.appendChild(x);
         });
         return;
       }
 
-      if (b.next === "maybe") {
-        wrap.innerHTML = "";
-        $("g1Text").textContent = "Press this to turn ‘maybe’ into ‘yes’.";
-        const fix = document.createElement("button");
-        fix.textContent = "Turn it into YES";
-        fix.onclick = ()=>{
-          toast("fixed it 😌");
-          burstHearts(16);
-          state.g1Step = 1;
-          renderG1();
+      if(b.next==="maybe"){
+        wrap.innerHTML="";
+        $("q1Text").textContent="Apasa aici ca sa fie 'da'.";
+        const fix=document.createElement("button");
+        fix.textContent="Transforma in DA";
+        fix.className="primary";
+        fix.onclick=()=>{
+          toast("mult mai bine"); burst(16);
+          state.step=1; renderQ1();
         };
         wrap.appendChild(fix);
         return;
       }
 
-      if (b.next === "three") {
-        wrap.innerHTML = "";
-        $("g1Text").textContent = "3 is illegal. Pick again.";
-        const again = document.createElement("button");
-        again.textContent = "Okay okay: Infinity";
-        again.onclick = ()=>{
-          toast("correct");
-          burstHearts(18);
-          state.g1Step = 2;
-          renderG1();
+      if(b.next==="three"){
+        wrap.innerHTML="";
+        $("q1Text").textContent="3 nu e acceptat. Mai incearca.";
+        const again=document.createElement("button");
+        again.textContent="Ok, infinit";
+        again.className="primary";
+        again.onclick=()=>{
+          toast("corect"); burst(18);
+          state.step=2; renderQ1();
         };
         wrap.appendChild(again);
         return;
       }
 
-      if (b.next === "nope") {
-        burstHearts(6);
+      if(b.next==="nope"){ burst(6); return; }
+
+      if(b.next==="win"){
+        toast("bun. mergem mai departe"); burst(28);
+        $("q2Text").textContent="Eu te iubesc? (raspunde corect)";
+        setTimeout(()=>go("sQ2"), 350);
         return;
       }
 
-      if (b.next === "win") {
-        toast("okay you win. next 👉");
-        burstHearts(30);
-        setTimeout(()=> {
-          $("g2Text").textContent = "Do I love you? (be honest)";
-          go("sGame2");
-        }, 350);
-        return;
-      }
-
-      state.g1Step = b.next;
-      renderG1();
-    });
-
+      state.step=b.next;
+      renderQ1();
+    };
     wrap.appendChild(btn);
   });
 }
 
-document.querySelector('[data-go="sGame1"]').addEventListener("click", () => {
-  if(state.g1Step === 0) renderG1();
+document.querySelector('[data-go="sQ1"]').addEventListener("click", ()=>{
+  if(state.step===0) renderQ1();
 });
 
-/* Reset */
-$("resetBtn").addEventListener("click", () => {
-  state.g1Step = 0;
-  state.kisses = 0;
-  $("meterBar").style.width = "0%";
-  $("meterHint").textContent = "";
-  toast("reset done");
-  burstHearts(10);
-  renderG1();
+$("resetBtn").addEventListener("click", ()=>{
+  state.step=0;
+  state.kisses=0;
+  $("bar").style.width="0%";
+  $("meterHint").textContent="";
+  toast("reset");
+  burst(10);
+  renderQ1();
 });
 
-/* Game 2 */
-$("g2Yes").addEventListener("click", () => {
-  toast("obviously 😌");
-  burstHearts(18);
-  $("g2Text").textContent = "Correct. Now prove YOUR love with the kiss meter.";
-  setTimeout(()=> go("sMeter"), 500);
+/* Q2 */
+$("q2Yes").addEventListener("click", ()=>{
+  toast("normal 😌"); burst(16);
+  $("q2Text").textContent="Corect. Acum dovedeste cu contorul de pupici.";
+  setTimeout(()=>go("sMeter"), 420);
 });
-
-$("g2No").addEventListener("click", () => {
-  toast("LIES 😭");
-  burstHearts(10);
-  $("g2Text").textContent = "Wrong answer. Try again. (I still love you)";
-});
-
-$("g2Prove").addEventListener("click", () => {
-  toast("okay bet");
-  burstHearts(16);
-  $("g2Text").textContent = "Alright. Go hit the kiss meter.";
-  setTimeout(()=> go("sMeter"), 450);
-});
-
-/* Meter */
-function updateMeter(){
-  const pct = Math.min(100, state.kisses * 10);
-  $("meterBar").style.width = pct + "%";
-
-  if(state.kisses === 0) $("meterHint").textContent = "";
-  else if(state.kisses < 5) $("meterHint").textContent = "keep going 😌";
-  else if(state.kisses < 10) $("meterHint").textContent = "okayyy someone is affectionate";
-  else $("meterHint").textContent = "meter full ✅";
-}
-
-$("kissBtn").addEventListener("click", () => {
-  state.kisses += 1;
-  burstHearts(8);
-  toast("mwah");
-  updateMeter();
-
-  if(state.kisses >= 10){
-    toast("okay okay that’s enough 😳 next 👉");
-    burstHearts(30);
-    setTimeout(()=> go("sMusic"), 450);
-  }
-});
-
-$("meterCheatBtn").addEventListener("click", () => {
-  state.kisses = Math.max(state.kisses, 9);
-  updateMeter();
-  toast("fine, one last kiss and you’re done");
-  burstHearts(12);
-});
-
-/* Music screen */
-$("openYT").addEventListener("click", () => {
-  window.open("https://youtu.be/UZWmtxLiiFE?si=tw-tMBmllB72mD19", "_blank", "noopener,noreferrer");
-  toast("opened in a new tab");
-});
-
-/* Final */
-function renderFinal(){
-  $("finalMsg").innerHTML =
-    `${state.finalSpanish} 💘<br>` +
-    `you are the best thing that ever happened to me.<br>` +
-    `thanks for being you.<br><br>` +
-    `now come here so i can steal a kiss 😚`;
-
-  const fb = $("finalButtons");
-  fb.textContent = "";
-
-  const b1 = document.createElement("button");
-  b1.textContent = "Send a kiss";
-  b1.onclick = ()=>{ burstHearts(28); toast("kiss sent (100% real)"); };
-  fb.appendChild(b1);
-
-  const b2 = document.createElement("button");
-  b2.textContent = "Press for a surprise";
-  b2.onclick = ()=>{ burstHearts(55); toast("surprise: i love you"); };
-  fb.appendChild(b2);
-
-  const b3 = document.createElement("button");
-  b3.className = "ghost";
-  b3.textContent = "One more";
-  b3.onclick = ()=>{ burstHearts(12); toast("you’re cute. that’s it."); };
-  fb.appendChild(b3);
-}
-
-document.querySelector('[data-go="sFinal"]').addEventListener("click", renderFinal);
-
-/* Init */
-(function init(){
-  $("g1Text").textContent = "Press a button to start.";
-  $("g2Text").textContent = "Do I love you? (be honest)";
-  updateMeter();
-})();
-</script>
-</body>
-</html>
+$("q2No").addEventListener("click", ()=>{
+  toast("minciuni 😭"); burst(10);
+  $("q2Text").textContent="Gresit. Mai i
