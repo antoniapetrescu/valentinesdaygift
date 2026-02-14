@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Pentru Alex</title>
+<title>Pentru Alexutu meu frumos</title>
 <style>
   :root{
     --bg: #fff2f6;
@@ -31,13 +31,14 @@
     padding:18px;
   }
 
-  /* light hearts, not too "template-y" */
+  /* light hearts */
   .hearts{
     position:fixed;
     inset:0;
     pointer-events:none;
     overflow:hidden;
     opacity:.55;
+    z-index:0; /* important */
   }
   .h{
     position:absolute;
@@ -69,9 +70,10 @@
     border-radius:18px;
     box-shadow: var(--shadow);
     padding:18px;
+    position:relative; /* important */
+    z-index:1;         /* important */
   }
 
-  /* “handmade note” header */
   .top{
     display:flex;
     align-items:flex-start;
@@ -225,25 +227,25 @@
   <main class="page">
     <header class="top">
       <div>
-        <h1 class="title">Pentru Alex</h1>
-        <p class="note">Am facut asta pentru tine. Apasa pe butoane. Nu te grabi.</p>
+        <h1 class="title">Pentru Alexutu meu frumos</h1>
+        <p class="note">Apasaaaa pe butoane...nu te grabi!</p>
       </div>
       <div class="stamp">💌</div>
     </header>
 
-    <!-- ECRAN: start -->
+    <!-- start -->
     <section class="screen active" id="sStart">
       <div class="box">
         <h2>Incepem?</h2>
-        <p>Te avertizez: daca alegi raspunsul gresit, te tachinez putin.</p>
+        <p>daca alegi raspunsul gresit, o sa ai de lucru</p>
         <div class="row">
-          <button class="primary" type="button" data-go="sQ1">Hai</button>
-          <button type="button" id="heartBtn">Arunca inimi</button>
+          <button class="primary" type="button" id="startBtn" data-go="sQ1">Lets go</button>
+          <button type="button" id="heartBtn">da-mi inimioaree</button>
         </div>
       </div>
     </section>
 
-    <!-- ECRAN: Q1 -->
+    <!-- Q1 -->
     <section class="screen" id="sQ1">
       <div class="box">
         <h2 id="q1Title">Intrebarea 1</h2>
@@ -258,7 +260,7 @@
       </div>
     </section>
 
-    <!-- ECRAN: Q2 -->
+    <!-- Q2 -->
     <section class="screen" id="sQ2">
       <div class="box">
         <h2>Randul meu</h2>
@@ -276,7 +278,7 @@
       </div>
     </section>
 
-    <!-- ECRAN: meter -->
+    <!-- meter -->
     <section class="screen" id="sMeter">
       <div class="box">
         <h2>Contor de pupici</h2>
@@ -298,11 +300,11 @@
       </div>
     </section>
 
-    <!-- ECRAN: music -->
+    <!-- music -->
     <section class="screen" id="sMusic">
       <div class="box">
         <h2>Pune asta in fundal</h2>
-        <p class="hint">Daca nu porneste, apasa play (browser-ele sunt enervante).</p>
+        <p class="hint">daca nu porneste, apasa plei</p>
 
         <div class="ytWrap">
           <iframe
@@ -326,25 +328,25 @@
       </div>
     </section>
 
-    <!-- ECRAN: final -->
+    <!-- final -->
     <section class="screen" id="sFinal">
       <div class="box">
         <h2>Alex.</h2>
         <p id="finalMsg"></p>
 
-        <img src="us.jpeg" alt="Noi doi" class="photo" id="usPhoto" />
+        <img src="us.jpeg" alt="uite ce draguti suntem" class="photo" id="usPhoto" />
         <div class="photoFallback" id="photoFallback">
-          Nu vad poza. Verifica sa fie in repo (langa index.html) si sa se numeasca exact <b>us.jpeg</b>.
+          Ups nu merge poza dar ti-o arat liveee
         </div>
 
         <div class="row" id="finalBtns"></div>
 
-        <p class="hint">PS: da, am facut asta ca sa apesi pe butoane.</p>
+        <p class="hint">am facut asta ca sa apesi pe butoane hihi</p>
       </div>
 
       <div class="divider"></div>
       <div class="row">
-        <button class="linky" type="button" data-go="sStart">Ia-o de la capat</button>
+        <button class="linky" type="button" data-go="sStart">de la capat</button>
       </div>
     </section>
   </main>
@@ -360,7 +362,9 @@ const screens = Array.from(document.querySelectorAll(".screen"));
 
 function go(id){
   screens.forEach(s=>s.classList.remove("active"));
-  $(id).classList.add("active");
+  const el = $(id);
+  if(!el) return;
+  el.classList.add("active");
   window.scrollTo({top:0, behavior:"smooth"});
 }
 
@@ -368,6 +372,12 @@ document.addEventListener("click",(e)=>{
   const b = e.target.closest("[data-go]");
   if(!b) return;
   go(b.getAttribute("data-go"));
+});
+
+/* extra safe: explicit start click */
+$("startBtn").addEventListener("click", ()=>{
+  go("sQ1");
+  renderQ1();
 });
 
 let toastTimer=null;
@@ -406,10 +416,10 @@ $("heartBtn").addEventListener("click", ()=>{
   toast("ok, destule inimi");
 });
 
-/* Q1: do you love me */
+/* Q1 */
 const q1 = [
   {
-    text: "Intrebare scurta: ma iubesti?",
+    text: "ma iubesti??",
     buttons: [
       { label:"Da", next:1, fx:()=>{ toast("bine 😌"); burst(16);} },
       { label:"Nu", next:"trap", fx:()=>{ toast("gresit 😤"); burst(8);} },
@@ -417,7 +427,7 @@ const q1 = [
     ]
   },
   {
-    text: "Cat de mult?",
+    text: "cat de mult?",
     buttons: [
       { label:"Mult", next:2, fx:()=>{ toast("stiam eu"); burst(14);} },
       { label:"La infinit", next:2, fx:()=>{ toast("ok, m-ai atins"); burst(22);} },
@@ -425,11 +435,11 @@ const q1 = [
     ]
   },
   {
-    text: "Ultima: apasa butonul corect.",
+    text: "apasa butonul corect!",
     buttons: [
-      { label:"Butonul corect", next:"win", fx:()=>{ toast("exact"); burst(26);} },
-      { label:"Asta", next:"nope", fx:()=>{ toast("nu"); } },
-      { label:"Sau asta", next:"nope", fx:()=>{ toast("tot nu"); } }
+      { label:"butonul corect", next:"win", fx:()=>{ toast("exact"); burst(26);} },
+      { label:"asta", next:"nope", fx:()=>{ toast("nu"); } },
+      { label:"aau asta", next:"nope", fx:()=>{ toast("tot nu"); } }
     ]
   }
 ];
@@ -445,14 +455,14 @@ function renderQ1(){
   step.buttons.forEach(b=>{
     const btn=document.createElement("button");
     btn.textContent=b.label;
-    btn.className = b.label==="Da" || b.label==="Butonul corect" ? "primary" : "";
+    btn.className = (b.label==="Da" || b.label==="Butonul corect") ? "primary" : "";
     btn.onclick=()=>{
       b.fx?.();
 
       if(b.next==="trap"){
         wrap.innerHTML="";
-        $("q1Text").textContent="Ok, nu. Incearca din nou. (te vad 👀)";
-        ["Da","DA","Da (tare)"].forEach(label=>{
+        $("q1Text").textContent="ok, nu. incearca din nou";
+        ["Da","DA","Da (mucho mucho mucho)"].forEach(label=>{
           const x=document.createElement("button");
           x.textContent=label;
           x.className="primary";
@@ -467,7 +477,7 @@ function renderQ1(){
 
       if(b.next==="maybe"){
         wrap.innerHTML="";
-        $("q1Text").textContent="Apasa aici ca sa fie 'da'.";
+        $("q1Text").textContent="apasa aici ca sa fie da";
         const fix=document.createElement("button");
         fix.textContent="Transforma in DA";
         fix.className="primary";
@@ -481,9 +491,9 @@ function renderQ1(){
 
       if(b.next==="three"){
         wrap.innerHTML="";
-        $("q1Text").textContent="3 nu e acceptat. Mai incearca.";
+        $("q1Text").textContent="3 nu merge. mai incearca.";
         const again=document.createElement("button");
-        again.textContent="Ok, infinit";
+        again.textContent="ok, infinit";
         again.className="primary";
         again.onclick=()=>{
           toast("corect"); burst(18);
@@ -497,7 +507,7 @@ function renderQ1(){
 
       if(b.next==="win"){
         toast("bun. mergem mai departe"); burst(28);
-        $("q2Text").textContent="Eu te iubesc? (raspunde corect)";
+        $("q2Text").textContent="eu te iubesc?";
         setTimeout(()=>go("sQ2"), 350);
         return;
       }
@@ -509,10 +519,7 @@ function renderQ1(){
   });
 }
 
-document.querySelector('[data-go="sQ1"]').addEventListener("click", ()=>{
-  if(state.step===0) renderQ1();
-});
-
+/* reset */
 $("resetBtn").addEventListener("click", ()=>{
   state.step=0;
   state.kisses=0;
@@ -526,9 +533,95 @@ $("resetBtn").addEventListener("click", ()=>{
 /* Q2 */
 $("q2Yes").addEventListener("click", ()=>{
   toast("normal 😌"); burst(16);
-  $("q2Text").textContent="Corect. Acum dovedeste cu contorul de pupici.";
+  $("q2Text").textContent="corect. acum dovedeste-o cu contorul de pupici";
   setTimeout(()=>go("sMeter"), 420);
 });
+
 $("q2No").addEventListener("click", ()=>{
   toast("minciuni 😭"); burst(10);
-  $("q2Text").textContent="Gresit. Mai i
+  $("q2Text").textContent="gresit, mai incearca (tot te iubesc)";
+});
+
+$("q2Prove").addEventListener("click", ()=>{
+  toast("ok, atunci"); burst(12);
+  $("q2Text").textContent="hai la contorul de pupiciiii";
+  setTimeout(()=>go("sMeter"), 350);
+});
+
+/* meter */
+function updateMeter(){
+  const pct=Math.min(100, state.kisses*10);
+  $("bar").style.width=pct+"%";
+  if(state.kisses===0) $("meterHint").textContent="";
+  else if(state.kisses<5) $("meterHint").textContent="mai apasa";
+  else if(state.kisses<10) $("meterHint").textContent="ok, apesi serios";
+  else $("meterHint").textContent="gata ✅";
+}
+
+$("kissBtn").addEventListener("click", ()=>{
+  state.kisses += 1;
+  toast("pup"); burst(8);
+  updateMeter();
+  if(state.kisses>=10){
+    toast("bine. urmatorul ecran"); burst(26);
+    setTimeout(()=>go("sMusic"), 380);
+  }
+});
+
+$("lazyBtn").addEventListener("click", ()=>{
+  state.kisses = Math.max(state.kisses, 9);
+  updateMeter();
+  toast("bine, inca unul si gata"); burst(12);
+});
+
+/* YouTube open */
+$("openYT").addEventListener("click", ()=>{
+  window.open("https://youtu.be/UZWmtxLiiFE?si=tw-tMBmllB72mD19", "_blank", "noopener,noreferrer");
+  toast("deschis");
+});
+
+/* final */
+function renderFinal(){
+  $("finalMsg").innerHTML =
+    "Te iubeeeeesc<br>" +
+    "Esti cel mai bun lucru care mi s-a intamplat<br><br>" +
+    "Acum vino sa-ti dau un puuup 😚";
+
+  const fb=$("finalBtns");
+  fb.textContent="";
+
+  const b1=document.createElement("button");
+  b1.className="primary";
+  b1.textContent="Trimite un pup";
+  b1.onclick=()=>{ burst(30); toast("pup trimis"); };
+  fb.appendChild(b1);
+
+  const b2=document.createElement("button");
+  b2.textContent="Surpriza";
+  b2.onclick=()=>{ burst(55); toast("miaaau te iuub"); };
+  fb.appendChild(b2);
+
+  const b3=document.createElement("button");
+  b3.className="linky";
+  b3.textContent="inca unul";
+  b3.onclick=()=>{ burst(10); toast("uite cat de draguti suntem 😌"); };
+  fb.appendChild(b3);
+}
+
+document.querySelector('[data-go="sFinal"]').addEventListener("click", renderFinal);
+
+/* photo fallback */
+$("usPhoto").addEventListener("error", ()=>{
+  $("usPhoto").style.display="none";
+  $("photoFallback").style.display="block";
+});
+
+/* init */
+(function init(){
+  $("q1Text").textContent="Apasa un buton ca sa incepi.";
+  $("q2Text").textContent="Eu te iubesc? (raspunde corect)";
+  updateMeter();
+})();
+</script>
+</body>
+</html>
