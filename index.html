@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>💘 For You</title>
+<title>💘 For Alex</title>
 <style>
   :root{
     --bg1:#ffe0ec;
@@ -54,14 +54,10 @@
   }
 
   .wrap{
-    width:min(980px, 94vw);
-    display:grid;
-    grid-template-columns: 1.15fr .85fr;
-    gap:18px;
+    width:min(760px, 94vw);
     z-index:1;
     padding:22px;
   }
-  @media (max-width: 900px){ .wrap{ grid-template-columns: 1fr; } }
 
   .card{
     background:var(--card);
@@ -105,16 +101,6 @@
     box-shadow:none;
   }
 
-  input[type="text"]{
-    width:min(360px, 100%);
-    padding:11px 12px;
-    border-radius:14px;
-    border:1px solid rgba(255,45,109,.28);
-    outline:none;
-    font-size:14px;
-    background: rgba(255,255,255,.75);
-  }
-
   .toast{
     position:fixed;
     left:50%;
@@ -133,23 +119,14 @@
     text-overflow:ellipsis;
   }
 
-  .badge{
-    display:inline-flex; gap:8px; align-items:center;
-    padding:8px 12px;
-    border-radius:999px;
-    border:1px dashed rgba(255,45,109,.35);
-    background: rgba(255,255,255,.55);
-    font-weight:650;
-    margin:6px 0 0;
-  }
-
-  .bigEmoji{font-size:34px; margin: 6px 0 8px}
   .box{
     border-radius:18px;
     padding:14px;
     background: linear-gradient(180deg, #fff, #fff6fa);
     border:1px solid rgba(255,45,109,.15);
   }
+
+  .bigEmoji{font-size:34px; margin: 6px 0 8px}
 
   .meter{
     height:12px;
@@ -177,6 +154,14 @@
     border:0;
     border-radius:16px;
   }
+
+  .photo{
+    width:100%;
+    border-radius:18px;
+    border:1px solid rgba(255,45,109,.18);
+    box-shadow: 0 14px 40px rgba(0,0,0,.12);
+    display:block;
+  }
 </style>
 </head>
 
@@ -184,33 +169,24 @@
   <div class="heart-field" id="heartField" aria-hidden="true"></div>
 
   <div class="wrap">
-    <!-- MAIN -->
     <section class="card">
-      <h1 id="title">💘 For you</h1>
-      <p class="muted" id="subtitle">This is a tiny thing I made for you. Press buttons. Be cute. 💗</p>
+      <h1>💘 Hi Alex</h1>
+      <p class="muted">I made you a tiny button game. Press stuff.</p>
 
       <!-- SCREEN: welcome -->
       <div class="screen active" id="sWelcome">
         <div class="box">
           <div class="bigEmoji">🥰</div>
-          <h2>Hi</h2>
-          <p>Before we start… what should I call you?</p>
+          <h2>Start here</h2>
+          <p>Okay. First question.</p>
           <div class="row">
-            <input id="nameInput" type="text" placeholder="Type your name / nickname" maxlength="28" />
-            <button id="saveNameBtn" type="button">Save</button>
+            <button type="button" data-go="sGame1">Go</button>
+            <button class="ghost" type="button" id="heartShowerBtn">Throw hearts</button>
           </div>
-          <p class="muted">Or just press save with it empty. I won’t judge 😌</p>
-        </div>
-
-        <div class="spacer"></div>
-
-        <div class="row">
-          <button type="button" data-go="sGame1">Start the button chaos</button>
-          <button class="ghost" type="button" id="heartShowerBtn">Throw hearts</button>
         </div>
       </div>
 
-      <!-- SCREEN: game 1 (do you love me) -->
+      <!-- SCREEN: game 1 -->
       <div class="screen" id="sGame1">
         <div class="box">
           <div class="bigEmoji">😏</div>
@@ -223,15 +199,15 @@
         <div class="divider"></div>
         <div class="row">
           <button class="ghost" type="button" data-go="sWelcome">Back</button>
-          <button class="ghost" type="button" id="resetBtn">Reset game</button>
+          <button class="ghost" type="button" id="resetBtn">Reset</button>
         </div>
       </div>
 
-      <!-- SCREEN: game 2 (do I love you) -->
+      <!-- SCREEN: game 2 -->
       <div class="screen" id="sGame2">
         <div class="box">
           <div class="bigEmoji">🤭</div>
-          <h2>Okay now my turn</h2>
+          <h2>My turn</h2>
           <p id="g2Text"></p>
 
           <div class="spacer"></div>
@@ -248,20 +224,20 @@
         </div>
       </div>
 
-      <!-- SCREEN: mini game (kiss meter) -->
+      <!-- SCREEN: kiss meter -->
       <div class="screen" id="sMeter">
         <div class="box">
           <div class="bigEmoji">💋</div>
           <h2>Kiss meter</h2>
-          <p>Spam the button. Don’t be shy.</p>
+          <p>Press the button 10 times.</p>
 
           <div class="spacer"></div>
-          <div class="meter" aria-label="Kiss meter"><div id="meterBar"></div></div>
+          <div class="meter"><div id="meterBar"></div></div>
           <div class="spacer"></div>
 
           <div class="row">
-            <button type="button" id="kissBtn">Give kiss</button>
-            <button class="ghost" type="button" id="meterCheatBtn">I’m tired</button>
+            <button type="button" id="kissBtn">Kiss</button>
+            <button class="ghost" type="button" id="meterCheatBtn">I’m lazy</button>
           </div>
 
           <p class="muted" id="meterHint"></p>
@@ -273,11 +249,11 @@
         </div>
       </div>
 
-      <!-- SCREEN: youtube -->
+      <!-- SCREEN: music -->
       <div class="screen" id="sMusic">
         <div class="box">
           <div class="bigEmoji">🎵</div>
-          <h2>Play this while you do the next part</h2>
+          <h2>Play this now</h2>
           <p>It’s cute and funny. That’s the vibe.</p>
 
           <div class="spacer"></div>
@@ -298,7 +274,7 @@
             <button type="button" data-go="sFinal">Continue</button>
           </div>
 
-          <p class="muted">If it doesn’t play, press play (browsers are annoying).</p>
+          <p class="muted">If it doesn’t play, press play (browsers…).</p>
         </div>
 
         <div class="divider"></div>
@@ -307,19 +283,23 @@
         </div>
       </div>
 
-      <!-- SCREEN: final -->
+      <!-- SCREEN: final (with photo) -->
       <div class="screen" id="sFinal">
         <div class="box">
           <div class="bigEmoji">🫶</div>
-          <h2 id="finalTitle"></h2>
+          <h2>Okay Alex.</h2>
           <p id="finalMsg"></p>
 
           <div class="spacer"></div>
 
+          <!-- Upload your image to the repo root and name it exactly: us.jpg -->
+          <img src="us.jpg" alt="Us" class="photo" onerror="this.style.display='none';" />
+
+          <div class="spacer"></div>
           <div class="row" id="finalButtons"></div>
 
           <div class="spacer"></div>
-          <p class="muted">PS: Yes, I made you press buttons on purpose.</p>
+          <p class="muted">PS: yes, I made you do a button game on purpose.</p>
         </div>
 
         <div class="divider"></div>
@@ -327,32 +307,8 @@
           <button class="ghost" type="button" data-go="sWelcome">Start over</button>
         </div>
       </div>
+
     </section>
-
-    <!-- SIDE -->
-    <aside class="card">
-      <h2>❤️ Little status</h2>
-      <p class="muted">This changes as you click stuff.</p>
-
-      <div class="badge">Player: <span id="who">someone cute</span></div>
-      <div class="badge">Mood: <span id="mood">waiting</span></div>
-
-      <div class="divider"></div>
-
-      <h2>✨ Extra buttons</h2>
-      <p class="muted">These don’t break the game. They just make it fun.</p>
-      <div class="row">
-        <button class="ghost" type="button" id="sideHearts">More hearts</button>
-        <button class="ghost" type="button" id="sideJoke">Random cute line</button>
-      </div>
-
-      <div class="divider"></div>
-
-      <h2>🔒 Safety</h2>
-      <p class="muted">
-        This page doesn’t send data anywhere. It’s just a static site + a YouTube embed.
-      </p>
-    </aside>
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -361,29 +317,13 @@
 'use strict';
 
 const state = {
-  name: "",
-  mood: "waiting",
   g1Step: 0,
   kisses: 0,
-  unlockedMusic: false,
-  unlockedFinal: false,
-  // You can customize this line:
   finalSpanish: "Te quiero mucho"
 };
 
 const $ = (id) => document.getElementById(id);
 const screens = Array.from(document.querySelectorAll(".screen"));
-
-function setMood(m){
-  state.mood = m;
-  $("mood").textContent = m;
-}
-
-function setName(n){
-  state.name = (n || "").trim();
-  $("who").textContent = state.name ? state.name : "someone cute";
-  $("title").textContent = state.name ? `💘 For ${state.name}` : "💘 For you";
-}
 
 let toastTimer = null;
 function toast(msg){
@@ -430,55 +370,45 @@ function burstHearts(n=20){
   }
 }
 
-/* Welcome */
-$("saveNameBtn").addEventListener("click", () => {
-  setName($("nameInput").value);
-  setMood("okay hi 😌");
-  burstHearts(16);
-  toast(state.name ? `Hi ${state.name} 💗` : "Hi 💗");
-});
-
 $("heartShowerBtn").addEventListener("click", () => {
   burstHearts(45);
   toast("okay okay hearts everywhere");
 });
 
-/* Game 1: “Do you love me” sequence */
+/* Game 1: “do you love me” */
 const g1 = {
   steps: [
     {
-      text: (n)=> `Quick question ${n}: do you love me?`,
+      text: "Quick question. Do you love me?",
       buttons: [
-        { label: "Yes", next: 1, onPick: ()=>{ setMood("happy"); toast("good answer 😌"); burstHearts(18);} },
-        { label: "No", next: "trap", onPick: ()=>{ setMood("offended"); toast("WRONG 😤"); burstHearts(8);} },
-        { label: "Maybe", next: "maybe", onPick: ()=>{ setMood("suspicious"); toast("maybe?? excuse me??"); } }
+        { label: "Yes", next: 1, onPick: ()=>{ toast("good answer 😌"); burstHearts(18);} },
+        { label: "No", next: "trap", onPick: ()=>{ toast("WRONG 😤"); burstHearts(8);} },
+        { label: "Maybe", next: "maybe", onPick: ()=>{ toast("maybe?? excuse me??"); } }
       ]
     },
     {
-      text: ()=> "Okay. how much though?",
+      text: "Okay. How much?",
       buttons: [
-        { label: "A lot", next: 2, onPick: ()=>{ setMood("blushing"); toast("i knew it"); burstHearts(14);} },
-        { label: "Infinity", next: 2, onPick: ()=>{ setMood("melting"); toast("stop i’m gonna cry"); burstHearts(22);} },
-        { label: "Like… 3", next: "three", onPick: ()=>{ setMood("laughing"); toast("3?? 😭"); } }
+        { label: "A lot", next: 2, onPick: ()=>{ toast("i knew it"); burstHearts(14);} },
+        { label: "Infinity", next: 2, onPick: ()=>{ toast("stop i’m gonna cry"); burstHearts(22);} },
+        { label: "Like… 3", next: "three", onPick: ()=>{ toast("3?? 😭"); } }
       ]
     },
     {
-      text: ()=> "Last one. choose the correct button.",
+      text: "Last one. Press the correct button.",
       buttons: [
-        { label: "The correct button", next: "win", onPick: ()=>{ setMood("victory"); toast("you understood the assignment"); burstHearts(26);} },
-        { label: "This one", next: "nope", onPick: ()=>{ setMood("teasing"); toast("nope 😌 try again"); } },
-        { label: "Also this one", next: "nope", onPick: ()=>{ setMood("teasing"); toast("still nope"); } }
+        { label: "The correct button", next: "win", onPick: ()=>{ toast("you understood the assignment"); burstHearts(26);} },
+        { label: "This one", next: "nope", onPick: ()=>{ toast("nope 😌 try again"); } },
+        { label: "Also this one", next: "nope", onPick: ()=>{ toast("still nope"); } }
       ]
     }
   ]
 };
 
 function renderG1(){
-  const n = state.name ? state.name : "you";
   const step = g1.steps[state.g1Step];
-
   $("g1Title").textContent = `Question ${state.g1Step + 1}`;
-  $("g1Text").textContent = step.text(n);
+  $("g1Text").textContent = step.text;
 
   const wrap = $("g1Buttons");
   wrap.textContent = "";
@@ -487,21 +417,18 @@ function renderG1(){
     const btn = document.createElement("button");
     btn.type = "button";
     btn.textContent = b.label;
+
     btn.addEventListener("click", () => {
       b.onPick?.();
 
       if (b.next === "trap") {
-        // funny “no” path, but you can recover
         wrap.innerHTML = "";
-        $("g1Text").textContent = "Okay no. try again. (i’m watching you)";
-        setMood("watching 👀");
-        toast("choose wisely");
-        // rebuild buttons but remove "No" for a second
+        $("g1Text").textContent = "Okay no. Try again. (i’m watching you)";
+        toast("choose wisely 👀");
         ["Yes","Yes (louder)","YES"].forEach(label=>{
           const x = document.createElement("button");
           x.textContent = label;
           x.onclick = ()=>{
-            setMood("forgiven");
             burstHearts(18);
             toast("much better");
             state.g1Step = 1;
@@ -514,11 +441,10 @@ function renderG1(){
 
       if (b.next === "maybe") {
         wrap.innerHTML = "";
-        $("g1Text").textContent = "Maybe?? okay. press the button that makes this ‘yes’";
+        $("g1Text").textContent = "Press this to turn ‘maybe’ into ‘yes’.";
         const fix = document.createElement("button");
-        fix.textContent = "Turn maybe into YES";
+        fix.textContent = "Turn it into YES";
         fix.onclick = ()=>{
-          setMood("relieved");
           toast("fixed it 😌");
           burstHearts(16);
           state.g1Step = 1;
@@ -530,12 +456,10 @@ function renderG1(){
 
       if (b.next === "three") {
         wrap.innerHTML = "";
-        $("g1Text").textContent = "3 is unacceptable. pick again.";
-        setMood("dramatic");
+        $("g1Text").textContent = "3 is illegal. Pick again.";
         const again = document.createElement("button");
         again.textContent = "Okay okay: Infinity";
         again.onclick = ()=>{
-          setMood("approved");
           toast("correct");
           burstHearts(18);
           state.g1Step = 2;
@@ -546,18 +470,13 @@ function renderG1(){
       }
 
       if (b.next === "nope") {
-        // stay on same step but make it playful
         burstHearts(6);
-        const wiggle = document.createElement("span");
         return;
       }
 
       if (b.next === "win") {
-        state.unlockedMusic = true;
-        state.unlockedFinal = true;
-        toast("okay you win. next screen 👉");
+        toast("okay you win. next 👉");
         burstHearts(30);
-        // jump to game 2
         setTimeout(()=> {
           $("g2Text").textContent = "Do I love you? (be honest)";
           go("sGame2");
@@ -565,7 +484,6 @@ function renderG1(){
         return;
       }
 
-      // normal step change
       state.g1Step = b.next;
       renderG1();
     });
@@ -575,7 +493,6 @@ function renderG1(){
 }
 
 document.querySelector('[data-go="sGame1"]').addEventListener("click", () => {
-  setMood("game time");
   if(state.g1Step === 0) renderG1();
 });
 
@@ -585,52 +502,45 @@ $("resetBtn").addEventListener("click", () => {
   state.kisses = 0;
   $("meterBar").style.width = "0%";
   $("meterHint").textContent = "";
-  setMood("reset");
   toast("reset done");
   burstHearts(10);
   renderG1();
 });
 
 /* Game 2 */
-function nameOrYou(){ return state.name ? state.name : "you"; }
-
 $("g2Yes").addEventListener("click", () => {
-  setMood("smug");
   toast("obviously 😌");
   burstHearts(18);
-  $("g2Text").textContent = `Correct. Next: prove YOUR love with the kiss meter.`;
+  $("g2Text").textContent = "Correct. Now prove YOUR love with the kiss meter.";
   setTimeout(()=> go("sMeter"), 500);
 });
 
 $("g2No").addEventListener("click", () => {
-  setMood("fake sad");
   toast("LIES 😭");
   burstHearts(10);
   $("g2Text").textContent = "Wrong answer. Try again. (I still love you)";
 });
 
 $("g2Prove").addEventListener("click", () => {
-  setMood("challenge accepted");
   toast("okay bet");
   burstHearts(16);
-  $("g2Text").textContent = `Alright ${nameOrYou()}. Go hit the kiss meter.`;
+  $("g2Text").textContent = "Alright. Go hit the kiss meter.";
   setTimeout(()=> go("sMeter"), 450);
 });
 
 /* Meter */
 function updateMeter(){
-  const pct = Math.min(100, state.kisses * 10); // 10 kisses to fill
+  const pct = Math.min(100, state.kisses * 10);
   $("meterBar").style.width = pct + "%";
 
   if(state.kisses === 0) $("meterHint").textContent = "";
   else if(state.kisses < 5) $("meterHint").textContent = "keep going 😌";
   else if(state.kisses < 10) $("meterHint").textContent = "okayyy someone is affectionate";
-  else $("meterHint").textContent = "meter full. you are certified boyfriend material ✅";
+  else $("meterHint").textContent = "meter full ✅";
 }
 
 $("kissBtn").addEventListener("click", () => {
   state.kisses += 1;
-  setMood("kisses x" + state.kisses);
   burstHearts(8);
   toast("mwah");
   updateMeter();
@@ -649,16 +559,14 @@ $("meterCheatBtn").addEventListener("click", () => {
   burstHearts(12);
 });
 
-/* Music screen extras */
+/* Music screen */
 $("openYT").addEventListener("click", () => {
   window.open("https://youtu.be/UZWmtxLiiFE?si=tw-tMBmllB72mD19", "_blank", "noopener,noreferrer");
   toast("opened in a new tab");
 });
 
-/* Final screen */
+/* Final */
 function renderFinal(){
-  const n = nameOrYou();
-  $("finalTitle").textContent = `Okay ${n}.`;
   $("finalMsg").innerHTML =
     `${state.finalSpanish} 💘<br>` +
     `you are the best thing that ever happened to me.<br>` +
@@ -669,52 +577,26 @@ function renderFinal(){
   fb.textContent = "";
 
   const b1 = document.createElement("button");
-  b1.textContent = "Send her a kiss";
-  b1.onclick = ()=>{ burstHearts(28); toast("kiss sent (100% real)"); setMood("kiss sent"); };
+  b1.textContent = "Send a kiss";
+  b1.onclick = ()=>{ burstHearts(28); toast("kiss sent (100% real)"); };
   fb.appendChild(b1);
 
   const b2 = document.createElement("button");
   b2.textContent = "Press for a surprise";
-  b2.onclick = ()=>{ burstHearts(50); toast("surprise: i love you"); setMood("surprised"); };
+  b2.onclick = ()=>{ burstHearts(55); toast("surprise: i love you"); };
   fb.appendChild(b2);
 
   const b3 = document.createElement("button");
   b3.className = "ghost";
-  b3.textContent = "One more cute line";
-  b3.onclick = ()=> randomCute();
+  b3.textContent = "One more";
+  b3.onclick = ()=>{ burstHearts(12); toast("you’re cute. that’s it."); };
   fb.appendChild(b3);
 }
 
-document.querySelector('[data-go="sFinal"]').addEventListener("click", () => {
-  setMood("final");
-  renderFinal();
-});
+document.querySelector('[data-go="sFinal"]').addEventListener("click", renderFinal);
 
-/* Side buttons */
-function randomCute(){
-  const lines = [
-    "i like you. a lot.",
-    "you make my days better.",
-    "you’re my favorite person.",
-    "i want more you-time.",
-    "your hugs are top tier.",
-    "i’m proud of you.",
-    "you’re cute. that’s the tweet."
-  ];
-  const pick = lines[Math.floor(Math.random()*lines.length)];
-  toast("💗 " + pick);
-  burstHearts(10);
-}
-
-$("sideHearts").addEventListener("click", ()=>{ burstHearts(40); toast("more hearts. always."); });
-$("sideJoke").addEventListener("click", ()=> randomCute() );
-
-/* Init defaults */
+/* Init */
 (function init(){
-  setName("");
-  setMood("waiting");
-
-  // set initial game text (so it isn't blank if they jump quickly)
   $("g1Text").textContent = "Press a button to start.";
   $("g2Text").textContent = "Do I love you? (be honest)";
   updateMeter();
